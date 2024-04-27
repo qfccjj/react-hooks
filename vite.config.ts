@@ -66,10 +66,10 @@ export default defineConfig((mode: ConfigEnv): UserConfig => {
 			minify: "terser",
 			terserOptions: {
 				// delete console/debugger
-				compress: {
-					drop_console: viteEnv.VITE_DROP_CONSOLE,
-					drop_debugger: true
-				}
+				// compress: {
+				// 	drop_console: viteEnv.VITE_DROP_CONSOLE,
+				// 	drop_debugger: true
+				// }
 			},
 			rollupOptions: {
 				output: {
