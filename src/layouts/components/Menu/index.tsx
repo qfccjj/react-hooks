@@ -1,14 +1,33 @@
 import { useEffect, useState } from "react";
 import { HomeOutlined, TableOutlined, PieChartOutlined, FileTextOutlined, AreaChartOutlined, FundOutlined, ShoppingOutlined, AppstoreOutlined } from "@ant-design/icons";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "antd";
+import type { MenuProps } from "antd";
 import Logo from "./components/Logo";
 import "./index.scss";
 
 const LayoutMenu = () => {
 	const { pathname } = useLocation();
 	const [menuActive, setMenuActive] = useState(pathname);
-	const [menuList] = useState([
+
+	const getSubMenuActive = () => {
+		menuList.forEach(item => {
+			if (item.children) {
+				item.children.forEach(child => {
+					if (child.key == pathname) {
+						setSubMenuActive(item.key);
+					}
+				});
+			}
+		});
+	};
+
+	useEffect(() => {
+		getSubMenuActive();
+		setMenuActive(pathname);
+	}, [pathname]);
+
+	const menuList = [
 		{
 			label: "首页",
 			key: "/home",
@@ -26,12 +45,12 @@ const LayoutMenu = () => {
 			children: [
 				{
 					label: "使用 Hooks",
-					key: "/table/useHooks",
+					key: "/proTable/useHooks",
 					icon: <AppstoreOutlined />
 				},
 				{
 					label: "使用 Component",
-					key: "/table/useComponent",
+					key: "/proTable/useComponent",
 					icon: <AppstoreOutlined />
 				}
 			]
@@ -129,16 +148,26 @@ const LayoutMenu = () => {
 				}
 			]
 		}
-	]);
+	];
 
-	useEffect(() => {
-		setMenuActive(pathname);
-	}, [pathname]);
+	const navigate = useNavigate();
+	// 点击当前菜单
+	const clickMenu: MenuProps["onClick"] = e => {
+		navigate(e.key);
+	};
+
+	const [subMenuActive, setSubMenuActive] = useState("");
+
+	// 设置当前展开的 subMenu
+	const openSubMenu = (openKeys: any) => {
+		if (openKeys.length == 0) return setSubMenuActive("");
+		setSubMenuActive(openKeys[1]);
+	};
 
 	return (
 		<div className="menu">
 			<Logo></Logo>
-			<Menu theme="dark" mode="inline" triggerSubMenuAction="click" selectedKeys={[menuActive]} items={menuList}></Menu>
+			<Menu theme="dark" mode="inline" triggerSubMenuAction="click" openKeys={[subMenuActive]} selectedKeys={[menuActive]} items={menuList} onClick={clickMenu} onOpenChange={openSubMenu}></Menu>
 		</div>
 	);
 };
