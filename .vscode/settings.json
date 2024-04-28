@@ -1,16 +1,19 @@
 {
+	"editor.formatOnSave": true,
 	"stylelint.enable": true,
+	// 开启stylelint自动修复
 	"editor.codeActionsOnSave": {
-		"source.fixAll.stylelint": "explicit"
+		"source.fixAll.stylelint": true
 	},
+	// 配置stylelint检查的文件类型范围
 	"stylelint.validate": [
 		"css",
 		"less",
 		"postcss",
 		"scss",
-		"tsx",
-		"html"
+		"sass"
 	],
+	"files.eol": "\n",
 	"cSpell.words": [
 		"antd",
 		"breakline",
@@ -23,6 +26,5 @@
 		"Prefixs",
 		"styl",
 		"stylelint"
-	],
-	"files.eol": "\n"
+	]
 }
