@@ -1,8 +1,11 @@
 .menu {
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 
 	.logo-box {
-		height: 60px;
+		height: 55px;
 		width: 100%;
 		display: flex;
 		align-items: center;
@@ -24,7 +27,7 @@
 	}
 
 	.ant-menu {
-		height: calc(100% - 60px);
+		flex: 1;
 		overflow: auto;
 	}
 }

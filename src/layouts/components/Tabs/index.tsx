@@ -7,7 +7,7 @@ import "./index.scss";
 const LayoutTabs = () => {
 	const { TabPane } = Tabs;
 	const { pathname } = useLocation();
-	const [activeValue, setActiveValue] = useState(pathname);
+	const [activeValue, setActiveValue] = useState<string>(pathname);
 	const [tabsList] = useState([
 		{
 			title: "首页",
