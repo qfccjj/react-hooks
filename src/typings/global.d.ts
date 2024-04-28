@@ -23,3 +23,8 @@ declare interface ViteEnv {
 	VITE_BUILD_GZIP: boolean;
 	VITE_REPORT: boolean;
 }
+
+declare module "*.png" {
+	const value: any;
+	export default value;
+}
