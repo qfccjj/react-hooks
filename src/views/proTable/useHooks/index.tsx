@@ -1,7 +1,15 @@
 import "./index.scss";
 import { Table } from "antd";
+import { useLocation } from "react-router-dom";
+import { rootRouter } from "@/routers/index";
+import { searchRouteDetail } from "@/utils/util";
 
 const UseHooks = () => {
+	const location = useLocation();
+
+	const res = searchRouteDetail(location.pathname, rootRouter);
+	console.log(res);
+
 	const dataSource = [
 		{
 			key: "1",
