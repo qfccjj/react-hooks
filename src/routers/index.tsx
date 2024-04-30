@@ -1,6 +1,8 @@
 import React from "react";
 import { useRoutes, Navigate, RouteObject } from "react-router-dom";
 import lazyLoad from "./lazyLoad";
+
+// * login 和 layout 没必要使用懒加载
 import Login from "@/views/login/index";
 import LayoutIndex from "@/layouts/index";
 
@@ -17,7 +19,7 @@ const rootRouter: RouteObject[] = [
 		element: <LayoutIndex />,
 		children: [
 			{
-				path: "/home",
+				path: "/home/index",
 				element: lazyLoad(React.lazy(() => import("@/views/home/index")))
 			},
 			{
@@ -40,11 +42,15 @@ const rootRouter: RouteObject[] = [
 	},
 	{
 		path: "*",
-		element: lazyLoad(React.lazy(() => import("@/components/ErrorMessage/404")))
+		element: <Navigate to="/404" />
 	},
 	{
 		path: "/403",
 		element: lazyLoad(React.lazy(() => import("@/components/ErrorMessage/403")))
+	},
+	{
+		path: "/404",
+		element: lazyLoad(React.lazy(() => import("@/components/ErrorMessage/404")))
 	},
 	{
 		path: "/500",
