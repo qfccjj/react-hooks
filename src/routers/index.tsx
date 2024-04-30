@@ -1,6 +1,8 @@
 import React from "react";
 import { useRoutes, Navigate, RouteObject } from "react-router-dom";
 import lazyLoad from "./lazyLoad";
+import Login from "@/views/login/index";
+import LayoutIndex from "@/layouts/index";
 
 const rootRouter: RouteObject[] = [
 	{
@@ -9,10 +11,10 @@ const rootRouter: RouteObject[] = [
 	},
 	{
 		path: "/login",
-		element: lazyLoad(React.lazy(() => import("@/views/login/index")))
+		element: <Login />
 	},
 	{
-		element: lazyLoad(React.lazy(() => import("@/layouts/index"))),
+		element: <LayoutIndex />,
 		children: [
 			{
 				path: "/home",
