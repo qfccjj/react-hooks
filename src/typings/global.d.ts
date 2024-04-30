@@ -28,3 +28,17 @@ declare module "*.png" {
 	const value: any;
 	export default value;
 }
+
+declare interface ImportMeta {
+	readonly env: ImportMetaEnv;
+	globEager(pattern: string): Record<string, any>;
+}
+
+interface ImportMetaEnv {
+	[key: string]: any;
+	BASE_URL: string;
+	MODE: string;
+	DEV: boolean;
+	PROD: boolean;
+	SSR: boolean;
+}
