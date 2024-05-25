@@ -40,7 +40,7 @@ const AvatarIcon = () => {
 							首页
 						</span>
 					),
-					key: "0"
+					key: "1"
 				},
 				{
 					label: (
@@ -48,7 +48,7 @@ const AvatarIcon = () => {
 							个人信息
 						</span>
 					),
-					key: "1"
+					key: "2"
 				},
 				{
 					label: (

@@ -32,6 +32,7 @@
 		"persistor",
 		"Prefixs",
 		"styl",
-		"stylelint"
+		"stylelint",
+		"truetype"
 	]
 }

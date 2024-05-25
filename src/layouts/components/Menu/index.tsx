@@ -5,10 +5,12 @@ import type { MenuProps } from "antd";
 import Logo from "./components/Logo";
 import { getMenuList } from "@/api/modules/login";
 import { getOpenKeys } from "@/utils/util";
+import { connect } from "react-redux";
+import { updateCollapse } from "@/redux/modules/menu/action";
 import * as Icons from "@ant-design/icons";
 import "./index.scss";
 
-const LayoutMenu = () => {
+const LayoutMenu = (props: any) => {
 	// 刷新页面菜单保持高亮
 	const { pathname } = useLocation();
 	// 当前选中的菜单项key数组
@@ -18,8 +20,8 @@ const LayoutMenu = () => {
 
 	useEffect(() => {
 		setSelectedKeys([pathname]);
-		setOpenKeys(getOpenKeys(pathname));
-	}, [pathname]);
+		props.isCollapse ? null : setOpenKeys(getOpenKeys(pathname));
+	}, [pathname, props.isCollapse]);
 
 	// 设置当前展开的 subMenu
 	const onOpenChange = (openKeys: string[]) => {
@@ -89,4 +91,6 @@ const LayoutMenu = () => {
 	);
 };
 
-export default LayoutMenu;
+const mapDispatchToProps = { updateCollapse };
+const mapStateToProps = (state: any) => state.menu;
+export default connect(mapStateToProps, mapDispatchToProps)(LayoutMenu);
