@@ -26,8 +26,10 @@
 		"easymock",
 		"fastmock",
 		"Gitee",
+		"immer",
 		"juejin",
 		"loglevel",
+		"persistor",
 		"Prefixs",
 		"styl",
 		"stylelint"
